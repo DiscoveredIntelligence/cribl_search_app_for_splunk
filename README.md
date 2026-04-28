@@ -23,7 +23,7 @@ Once results are fetched using this command, you can use any streaming or transf
 
 ## Installation
 
-1. Download the app from Splunkbase
+1. Download the app from Github releases page
 2. Install the app on a Search Head
 3. Navigate to the app's Setup page (Manage Apps → criblsearch → Set up)
 4. Configure your Cribl Cloud endpoint:
