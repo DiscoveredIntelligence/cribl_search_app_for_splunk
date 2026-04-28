@@ -1,0 +1,241 @@
+{
+    "pages": {
+        "configuration": {
+            "tabs": [
+                {
+                    "name": "account",
+                    "title": "Cribl Endpoints",
+                    "table": {
+                        "actions": [
+                            "edit",
+                            "delete",
+                            "clone"
+                        ],
+                        "header": [
+                            {
+                                "label": "Name",
+                                "field": "name"
+                            },
+                            {
+                                "label": "Cribl URL",
+                                "field": "cribl_url"
+                            },
+                            {
+                                "label": "Instance Type",
+                                "field": "cribl_instance"
+                            },
+                            {
+                                "label": "Default",
+                                "field": "is_default"
+                            }
+                        ]
+                    },
+                    "entity": [
+                        {
+                            "type": "text",
+                            "label": "Endpoint Name",
+                            "field": "name",
+                            "help": "A unique name for this Cribl endpoint. Use this name with cribl_endpoint= in searches.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Endpoint name must begin with a letter and contain only alphanumeric characters and underscores.",
+                                    "pattern": "^[a-zA-Z]\\w*$"
+                                },
+                                {
+                                    "type": "string",
+                                    "errorMsg": "Length of endpoint name should be between 1 and 50",
+                                    "minLength": 1,
+                                    "maxLength": 50
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "label": "Cribl URL",
+                            "field": "cribl_url",
+                            "help": "Cribl API URL hostname only (e.g., main-yourorg.cribl.cloud). Do not include https:// prefix or paths.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Invalid URL format. Enter hostname only (alphanumeric, dots, dashes). No protocol (https://) or paths.",
+                                    "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]*[a-zA-Z0-9]$"
+                                },
+                                {
+                                    "type": "string",
+                                    "errorMsg": "URL length should be between 5 and 200 characters",
+                                    "minLength": 5,
+                                    "maxLength": 200
+                                }
+                            ]
+                        },
+                        {
+                            "type": "singleSelect",
+                            "label": "Instance Type",
+                            "field": "cribl_instance",
+                            "help": "Cribl Cloud is supported.",
+                            "required": true,
+                            "defaultValue": "cribl.cloud",
+                            "options": {
+                                "disableSearch": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "label": "Cribl Cloud",
+                                        "value": "cribl.cloud"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "label": "Client ID",
+                            "field": "cribl_client_id",
+                            "help": "Client ID for OAuth authentication.",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "errorMsg": "Client ID length should be between 1 and 200 characters",
+                                    "minLength": 1,
+                                    "maxLength": 200
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "label": "Client Secret",
+                            "field": "cribl_client_secret",
+                            "help": "Client Secret for OAuth authentication.",
+                            "required": true,
+                            "encrypted": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "errorMsg": "Client Secret length should be between 1 and 500 characters",
+                                    "minLength": 1,
+                                    "maxLength": 500
+                                }
+                            ]
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Default Endpoint",
+                            "field": "is_default",
+                            "help": "Use this endpoint when cribl_endpoint= is not specified in searches. Only one endpoint should be marked as default.",
+                            "required": false,
+                            "defaultValue": false
+                        }
+                    ]
+                },
+                {
+                    "name": "logging",
+                    "title": "Logging",
+                    "entity": [
+                        {
+                            "type": "singleSelect",
+                            "label": "Log level",
+                            "options": {
+                                "disableSearch": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "value": "DEBUG",
+                                        "label": "DEBUG"
+                                    },
+                                    {
+                                        "value": "INFO",
+                                        "label": "INFO"
+                                    },
+                                    {
+                                        "value": "WARNING",
+                                        "label": "WARNING"
+                                    },
+                                    {
+                                        "value": "ERROR",
+                                        "label": "ERROR"
+                                    },
+                                    {
+                                        "value": "CRITICAL",
+                                        "label": "CRITICAL"
+                                    }
+                                ]
+                            },
+                            "defaultValue": "INFO",
+                            "field": "loglevel",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Log level must be one of: DEBUG, INFO, WARNING, ERROR, CRITICAL",
+                                    "pattern": "^DEBUG|INFO|WARNING|ERROR|CRITICAL$"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "proxy",
+                    "title": "Proxy",
+                    "entity": [
+                        {
+                            "type": "checkbox",
+                            "label": "Enable",
+                            "field": "proxy_enabled"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Host",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "errorMsg": "Max host length is 4096",
+                                    "minLength": 1,
+                                    "maxLength": 4096
+                                },
+                                {
+                                    "type": "regex",
+                                    "errorMsg": "Proxy Host should not have special characters",
+                                    "pattern": "^[a-zA-Z]\\w*$"
+                                }
+                            ],
+                            "field": "proxy_url",
+                            "required": true
+                        },
+                        {
+                            "type": "text",
+                            "label": "Port",
+                            "validators": [
+                                {
+                                    "type": "number",
+                                    "range": [
+                                        1,
+                                        65535
+                                    ],
+                                    "isInteger": true
+                                }
+                            ],
+                            "field": "proxy_port",
+                            "required": true
+                        }
+                    ]
+                }
+            ],
+            "title": "Configuration",
+            "description": "Configure Cribl Search endpoints and connection settings"
+        }
+    },
+    "meta": {
+        "name": "criblsearch",
+        "restRoot": "criblsearch",
+        "version": "0.0.0+8dae258",
+        "displayName": "CriblSearch App for Splunk",
+        "schemaVersion": "0.0.10",
+        "checkForUpdates": true,
+        "supportedThemes": [
+            "light",
+            "dark"
+        ],
+        "_uccVersion": "6.1.0"
+    }
+}

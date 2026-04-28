@@ -1,0 +1,45 @@
+{
+    "info": {
+        "author": [
+            {
+                "company": "Discovered Inteliigence",
+                "email": "support@discoveredintelligence.ca",
+                "name": "Discovered Intelligence Inc."
+            }
+        ],
+        "classification": {
+            "categories": [
+                "IT Operations",
+                "Security Professionals"
+            ],
+            "developmentStatus": "Production/Stable",
+            "intendedAudience": "IT or Security"
+        },
+        "commonInformationModels": null,
+        "description": "The CriblSearch app for Splunk allows users to run searches against a configured Cribl search environment and return the results in Splunk Search",
+        "id": {
+            "group": null,
+            "name": "criblsearch",
+            "version": "0.0.0+8dae258"
+        },
+        "license": {
+            "name": "Creative Commons BY 4.0",
+            "text": null,
+            "uri": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "releaseDate": "2026-02-18",
+        "releaseNotes": {
+            "name": "README",
+            "text": "README.txt",
+            "uri": null
+        },
+        "title": "CriblSearch App for Splunk"
+    },
+    "schemaVersion": "2.0.0",
+    "supportedDeployments": [
+        "*"
+    ],
+    "targetWorkloads": [
+        "_search_heads"
+    ]
+}
